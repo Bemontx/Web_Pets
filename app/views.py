@@ -12,6 +12,10 @@ class HomeView(viewsets.ModelViewSet):
     authentication_classes =[authentication.SessionAuthentication]
     permission_classes = [AllowAny]
     
-    def get(self,request,*args, **kwargs):
-        context={}
-        return render(request,'home.html',context)
+    def list(self, request):
+        queryset = self.queryset
+        serializer = self.serializer_class(queryset, many=True)
+        context = {
+            'users': serializer.data 
+        }
+        return render(request, 'home.html', context)
