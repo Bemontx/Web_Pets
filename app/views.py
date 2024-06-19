@@ -40,7 +40,11 @@ class RegisterView(viewsets.ViewSet):
                 if user is not None:
                     login(request, user)
                     return redirect('index')
-        
+                else:
+                    return render(request, 'register.html', {'serializer': serializer, 'error': 'Authentication failed'})
+            else:
+                print(serializer.errors)  # Añadir esto para depurar los errores de validación
+                return render(request, 'register.html', {'serializer': serializer, 'error': 'Invalid data'})
         else:
             serializer = UsersSerializer()
             

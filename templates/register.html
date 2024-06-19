@@ -10,7 +10,22 @@
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
         {{ serializer.as_p }}
-        
+
+        <label for="id_name">Name:</label>
+        <input type="text" id="id_name" name="name" placeholder="Insert your name" required>
+        <br>
+        <label for="id_lastName">Last Name:</label>
+        <input type="text" id="id_lastName" name="last_name" placeholder="Insert your last name" required>
+        <br>
+        <label for="id_age">Age:</label>
+        <input type="number" id="id_age" name="age" placeholder="Insert your age" required>
+        <br>
+        <label for="id_phone_number">Phone Number:</label>
+        <input type="text" id="id_phone_number" name="phone_number" placeholder="Insert your number" required>
+        <br>
+        <label for="id_email">Email:</label>
+        <input type="email" id="id_email" name="email" placeholder="Insert your email" required>
+        <br>
         <label for="id_username">Username:</label>
         <input type="text" id="id_username" name="username" placeholder="Enter your username" required>
         <br>
@@ -19,6 +34,10 @@
         <br>
         <input type="submit" value="Register">
     </form>
+    
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
     
     <p><a href="{% url 'home' %}">Back to Home</a></p>
 </body>
