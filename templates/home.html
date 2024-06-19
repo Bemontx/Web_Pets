@@ -16,6 +16,22 @@
         {{ serializer.as_p }}
         <input type="submit" value="Registrarse">
     </form>
+
+    <hr>
+    <div>
+        <h3>Login</h3>
+        <form action="{% url 'login' %}" method='post'></form>
+        {% csrf_token %}
+
+        <label for="id_login_username">User Name</label>
+        <input type="text" id='id_login_username' name='username' placeholder='Insert Name' required>
+        <br>
+        <label for="id_login_password">Password</label>
+        <input type="text" id='id_login_password' name='password' placeholder='pass' required>
+        <br>
+        <input type="submit" value='Log in'>
+
+    </div>
     
     <p><a href="{% url 'index' %}">Omitir registro ir directo a la Pagina</a></p>
     {% endblock %}
