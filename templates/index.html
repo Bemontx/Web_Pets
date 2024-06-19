@@ -12,6 +12,11 @@
         {% endfor %}
     </ul>
     
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Logout">
+    </form>
+
     <p><a href="{% url 'home' %}">Back to Home</a></p>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
@@ -20,6 +20,10 @@ class HomeView(viewsets.ViewSet):
             else:
                 return render(request, 'home.html', {'error': 'Invalid credentials'})
         return render(request, 'home.html')
+    
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 class RegisterView(viewsets.ViewSet):
     
