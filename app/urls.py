@@ -1,14 +1,7 @@
-from django.urls import path
-from rest_framework.routers import DefaultRouter
-from .views import HomeView
-
-router = DefaultRouter()
-router.register(r'home', HomeView)
-
-app_name = 'index'
+from django.urls import path, include
+from .views import IndexView, HomeView
 
 urlpatterns = [
-    path('', HomeView.as_view({'get': 'list'}), name='home'),
+    path('', HomeView.as_view({'get': 'home'}), name='home'),
+    path('index/', IndexView.as_view({'get': 'list'}), name='index'),
 ]
-
-urlpatterns += router.urls

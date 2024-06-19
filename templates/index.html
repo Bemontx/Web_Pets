@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <h2>Welcome to Index</h2>
+    <h3>Users:</h3>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.name }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Pets:</h3>
+    <ul>
+        {% for pet in pets %}
+            <li>{{ pet.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
