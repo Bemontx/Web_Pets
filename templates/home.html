@@ -10,30 +10,23 @@
 <body>
     <h2>Welcome home</h2>
 
-    {% block content%}
+    {% block content %}
     <form action="{% url 'home' %}" method="post">
         {% csrf_token %}
-        {{ serializer.as_p }}
-        <input type="submit" value="Registrarse">
+        <label for="id_username">Username:</label>
+        <input type="text" id="id_username" name="username" placeholder="Enter your username" required>
+        <br>
+        <label for="id_password">Password:</label>
+        <input type="password" id="id_password" name="password" placeholder="Enter your password" required>
+        <br>
+        <input type="submit" value="Login">
     </form>
 
-    <hr>
-    <div>
-        <h3>Login</h3>
-        <form action="{% url 'login' %}" method='post'></form>
-        {% csrf_token %}
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
 
-        <label for="id_login_username">User Name</label>
-        <input type="text" id='id_login_username' name='username' placeholder='Insert Name' required>
-        <br>
-        <label for="id_login_password">Password</label>
-        <input type="text" id='id_login_password' name='password' placeholder='pass' required>
-        <br>
-        <input type="submit" value='Log in'>
-
-    </div>
-    
-    <p><a href="{% url 'index' %}">Omitir registro ir directo a la Pagina</a></p>
+    <p><a href="{% url 'register' %}">Register</a></p>
     {% endblock %}
 </body>
 </html>

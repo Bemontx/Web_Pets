@@ -10,7 +10,18 @@ from .models import Users
 class HomeView(viewsets.ViewSet):
     
     def home(self, request):
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+            else:
+                return render(request, 'home.html', {'error': 'Invalid credentials'})
         return render(request, 'home.html')
+
+class RegisterView(viewsets.ViewSet):
     
     def register(self, request):
         if request.method == 'POST':
@@ -34,20 +45,6 @@ class HomeView(viewsets.ViewSet):
             serializer = UsersSerializer()
             
         return render(request, 'register.html', {'serializer': serializer})
-    
-    def login(self,request):
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(request, username=username,password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('index')
-            else:
-                return render(request, 'home.html', {'error':'Invalid Credentials'})
-            
-        return render(request,'home.html')
-            
 
 class IndexView(viewsets.ViewSet):
     permission_classes = [AllowAny]
