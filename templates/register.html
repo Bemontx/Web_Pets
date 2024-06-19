@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro</title>
-</head>
-<body>
-    <h1>Registro de Usuario</h1>
+{% extends "home.html" %}
+
+{% block content %}
+    <h3>Registro de Usuario</h3>
     
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
@@ -40,5 +36,4 @@
     {% endif %}
     
     <p><a href="{% url 'home' %}">Back to Home</a></p>
-</body>
-</html>
+{% endblock %}

@@ -47,7 +47,7 @@ class RegisterView(viewsets.ViewSet):
                 else:
                     return render(request, 'register.html', {'serializer': serializer, 'error': 'Authentication failed'})
             else:
-                print(serializer.errors)  # Añadir esto para depurar los errores de validación
+                print(serializer.errors) 
                 return render(request, 'register.html', {'serializer': serializer, 'error': 'Invalid data'})
         else:
             serializer = UsersSerializer()
